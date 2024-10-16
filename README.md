@@ -9,27 +9,17 @@
 ![CLI Screenshot](media/cli-screenshot.png)
 
 > [!NOTE]
-> This CLI tool is inspired by [Twitch-DL](https://github.com/ihabunek/twitch-dl), developed by [@ihabunek](https://github.com/ihabunek).
-
-## Table of Contents :books:
-
-- [Features :rocket:](#features-rocket)
-- [Support Us :sparkling_heart:](#support-us-sparkling_heart)
-- [Installation :package:](#installation-package)
-- [Disclaimer :warning:](#disclaimer-warning)
-- [Contributing :handshake:](#contributing-handshake)
-- [License :scroll:](#license-scroll)
-- [Contact :email:](#contact-email)
+> This CLI tool is inspired by [Twitch-DL](https://github.com/ihabunek/twitch-dl) developed by [@ihabunek](https://github.com/ihabunek).
 
 ## Features :rocket:
 
-- **Built-in FFmpeg**: It comes with FFmpeg integrated, so you don’t need to install FFmpeg on your system separately.
-- **Cross-Platform**: Works on Windows, macOS, and Linux.
-- **Speedy Multithreaded Downloads**: CLI is developed in Node.js, but it utilizes a compiled FFmpeg binary for quicker multithreaded downloads.
+- **Built-in FFmpeg**: It comes with FFmpeg integrated, allowing you to download multimedia content without needing to install FFmpeg on your system separately.
+- **Multithreaded Downloads**: CLI is developed in Node.js, but it utilizes a compiled FFmpeg binary for quicker multithreaded downloads.
 - **Global Installation**: Install it anywhere on your system and access it from any terminal with no hassle.
-- **Easy VODs Downloads**: Download Videos on Demand (VODs) from Kick quickly and easily with simple commands.
-- **Fast Clips Downloads**: Download Clips from Kick with ease and speed.
-- **Customizable Options**: Adjust settings like format (.mp4) and quality (1080p) to get exactly what you want.
+- **Cross-Platform Compatibility**: Works on Windows, macOS, and Linux operating systems.
+- **VODs Downloads**: Download Videos on Demand (VODs) from Kick quickly and easily with simple commands.
+- **Clips Downloads**: Download Clips from Kick with ease and speed.
+- **Customizable Options**: Adjust settings like format (mp4) and quality (1080p) to suit your needs.
 
 ## Support Us :sparkling_heart:
 
@@ -64,7 +54,7 @@ We welcome contributions! If you have suggestions, improvements, or bug fixes, p
 
 ## License :scroll:
 
-Copyright © 2024 Julio Cesar Garcia
+Copyright :copyright: 2024 Julio Cesar Garcia
 
 This project is licensed under the GNU General Public License v3.0. See the [LICENSE](LICENSE) file for more details.
 

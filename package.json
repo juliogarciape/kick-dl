@@ -1,7 +1,7 @@
 {
   "name": "kick-dl",
   "version": "2.0.0",
-  "description": "CLI tool for easily downloading VODs and Clips from Kick.com",
+  "description": "CLI tool for easily downloading VODs and Clips from kick.com",
   "type": "module",
   "private": false,
   "author": "Julio Cesar Garcia <dev.juliogarciape@gmail.com>",

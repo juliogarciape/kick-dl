@@ -1,32 +1,15 @@
-import KickApi from './api/kick.js';
 import { externalDownloader, nativeDownloader } from './lib/downloader.js';
 import { convertTime } from './helpers/index.js';
-import logs from './lib/logs.js';
-import { input, select, confirm } from '@inquirer/prompts';
 import ora from 'ora';
 
 const handleExit = () => process.exit(0);
 process.on('SIGINT', () => handleExit());
 process.on('SIGTERM', () => handleExit());
 
-const Api = new KickApi();
-
 const spinner = ora({
 	text: 'Processing...',
 	spinner: 'dots',
 });
-
-const formatInput = (input) => input.toLowerCase().replace(/\s+/g, '_');
-
-const customPrefix = logs.green('[*]');
-
-const customTransformer = (input, { isFinal }) => {
-	if (isFinal) {
-		const formatedText = formatInput(input);
-		return logs.pink(formatedText);
-	}
-	return logs.pink(input);
-};
 
 export const downloadAction = async (webUrl, options) => {
 	try {
@@ -41,52 +24,6 @@ export const downloadAction = async (webUrl, options) => {
 
 export const initialAction = async () => {
 	try {
-		let inputChannel = await input({
-			message: 'Please, enter the Kick Channel:',
-			required: true,
-			transformer: customTransformer,
-			theme: {
-				prefix: customPrefix,
-				style: {
-					answer: (input) => logs.pink(input),
-				},
-			},
-		});
-
-		inputChannel = formatInput(inputChannel);
-		spinner.start();
-		const result = await Api.searchKickChannel(inputChannel);
-		spinner.stop();
-
-		if (result.status === false) {
-			console.log(`❌ ${inputChannel} not found`);
-			return;
-		}
-
-		const username = result.data.user.username;
-		const contentType = await select({
-			message: 'Select an option to list:',
-			theme: {
-				prefix: customPrefix,
-				style: {
-					answer: (input) => logs.yellow(input),
-				},
-			},
-			loop: true,
-			choices: [
-				{
-					name: 'VODs',
-					value: 'vod',
-					description: `- List past VODs from ${username}, ideal for full streams.`,
-				},
-				{
-					name: 'Clips',
-					value: 'clip',
-					description: `- List short clips from ${username}, perfect for highlights.`,
-				},
-			],
-		});
-
 		spinner.start();
 		const contentList = await Api.listKickContent(
 			inputChannel,
@@ -154,7 +91,5 @@ export const initialAction = async () => {
 		if (error.name === 'NetworkError') {
 			console.log('❌ Network error... Please try again later');
 		}
-	} finally {
-		handleExit();
 	}
 };

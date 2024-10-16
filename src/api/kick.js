@@ -15,7 +15,7 @@ export default class KickApi {
 		}
 	};
 
-	searchKickChannel = async (channel) => {
+	searchChannel = async (channel) => {
 		try {
 			const result = await Scraper.fetchChannelData(channel);
 

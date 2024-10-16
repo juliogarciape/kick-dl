@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 
-const logs = {
+const colors = {
 	yellow: chalk.hex('#ffff55'),
 	green: chalk.bold.hex('#00ff00'),
 	blue: chalk.hex('#0ff'),
@@ -8,4 +8,4 @@ const logs = {
 	red: chalk.red,
 };
 
-export default logs;
+export default colors;
