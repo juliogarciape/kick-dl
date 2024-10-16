@@ -1,40 +1,26 @@
 {
   "name": "kick-dl",
-  "version": "1.0.1",
-  "description": "A CLI tool for easily downloading VODs and Clips from Kick.com.",
+  "version": "2.0.0",
+  "description": "CLI tool for easily downloading VODs and Clips from Kick.com",
+  "type": "module",
+  "private": false,
+  "author": "Julio Cesar Garcia <dev.juliogarciape@gmail.com>",
+  "license": "GPL-3.0-only",
+  "homepage": "https://github.com/juliogarciape/kick-dl#README",
   "bin": {
     "kick-dl": "./bin/cli.js"
   },
-  "type": "module",
-  "main": "./bin/cli.js",
-  "author": "Julio Cesar Garcia <dev.juliogarciape@gmail.com>",
-  "license": "Apache-2.0",
-  "homepage": "https://github.com/juliogarciape/kick-dl#README",
-  "scripts": {
-    "start": "node ./bin/cli.js"
-  },
   "keywords": [
-    "Kick.com",
-    "Kick Streaming",
-    "Downloader",
-    "VODs/Clips",
-    "Livestream",
-    "CLI",
+    "kick.com",
+    "cli",
+    "ffmpeg",
+    "downloader",
+    "vod downloader",
+    "kick downloader",
+    "kick streaming",
     "youtube-dl",
-    "twitch-dl",
-    "yt-dlp",
-    "Kick Api",
-    "Command-Line"
+    "twitch-dl"
   ],
-  "dependencies": {
-    "@inquirer/prompts": "^5.3.8",
-    "axios": "^1.7.4",
-    "chalk": "^5.3.0",
-    "commander": "^12.1.0",
-    "luxon": "^3.5.0",
-    "ora": "^8.0.1",
-    "puppeteer": "21.5.0"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/juliogarciape/kick-dl.git"
@@ -44,5 +30,15 @@
   },
   "engines": {
     "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^6.0.1",
+    "axios": "^1.7.7",
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "ffmpeg-static": "^5.2.0",
+    "luxon": "^3.5.0",
+    "ora": "^8.1.0",
+    "puppeteer": "^22.15.0"
   }
 }

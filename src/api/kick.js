@@ -3,6 +3,18 @@ import KickScraper from '../lib/scraper.js';
 const Scraper = new KickScraper();
 
 export default class KickApi {
+	getMediaFile = async (url) => {
+		try {
+			const result = await Scraper.fetchUrlData(url);
+			return result.source;
+		} catch (error) {
+			return {
+				status: false,
+				message: 'Invalid URL',
+			};
+		}
+	};
+
 	searchKickChannel = async (channel) => {
 		try {
 			const result = await Scraper.fetchChannelData(channel);

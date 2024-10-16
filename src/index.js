@@ -1,6 +1,6 @@
 import KickApi from './api/kick.js';
-import downloadMedia from './lib/downloader.js';
-import { convertTime } from './helpers.js';
+import { externalDownloader, nativeDownloader } from './lib/downloader.js';
+import { convertTime } from './helpers/index.js';
 import logs from './lib/logs.js';
 import { input, select, confirm } from '@inquirer/prompts';
 import ora from 'ora';
@@ -9,7 +9,7 @@ const handleExit = () => process.exit(0);
 process.on('SIGINT', () => handleExit());
 process.on('SIGTERM', () => handleExit());
 
-const api = new KickApi();
+const Api = new KickApi();
 
 const spinner = ora({
 	text: 'Processing...',
@@ -28,6 +28,17 @@ const customTransformer = (input, { isFinal }) => {
 	return logs.pink(input);
 };
 
+export const downloadAction = async (webUrl, options) => {
+	try {
+		const videoUrl = await Api.getMediaFile(webUrl);
+		await nativeDownloader(videoUrl, options);
+	} catch (error) {
+		console.log(error);
+	} finally {
+		handleExit();
+	}
+};
+
 export const initialAction = async () => {
 	try {
 		let inputChannel = await input({
@@ -44,7 +55,7 @@ export const initialAction = async () => {
 
 		inputChannel = formatInput(inputChannel);
 		spinner.start();
-		const result = await api.searchKickChannel(inputChannel);
+		const result = await Api.searchKickChannel(inputChannel);
 		spinner.stop();
 
 		if (result.status === false) {
@@ -77,7 +88,7 @@ export const initialAction = async () => {
 		});
 
 		spinner.start();
-		const contentList = await api.listKickContent(
+		const contentList = await Api.listKickContent(
 			inputChannel,
 			contentType
 		);
@@ -130,7 +141,7 @@ export const initialAction = async () => {
 
 		if (confirmDownload) {
 			spinner.start();
-			await downloadMedia(contentType, downloadLink);
+			await externalDownloader(contentType, downloadLink);
 			spinner.stop();
 		}
 	} catch (error) {

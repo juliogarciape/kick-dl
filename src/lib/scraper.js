@@ -6,7 +6,7 @@ export default class KickScraper {
 		this.browser = options.browser;
 	}
 
-	scrapeData = async (url) => {
+	scrapeDataAsJson = async (url) => {
 		let browser = null;
 		let internalBrowser = false;
 
@@ -54,16 +54,28 @@ export default class KickScraper {
 		}
 	};
 
+	fetchUrlData = async (url) => {
+		const dataArray = url.split('/');
+		const indexVideo = dataArray.indexOf('videos');
+		const idVideo = dataArray[indexVideo + 1];
+		const urlData = await this.scrapeDataAsJson(
+			`https://kick.com/api/v1/video/${idVideo}/`
+		);
+		return urlData;
+	};
+
 	fetchChannelData = async (channel) =>
-		this.scrapeData(`https://kick.com/api/v2/channels/${channel}`);
+		await this.scrapeDataAsJson(
+			`https://kick.com/api/v2/channels/${channel}`
+		);
 
 	fetchVideoData = async (channel) =>
-		this.scrapeData(
+		await this.scrapeDataAsJson(
 			`https://kick.com/api/v2/channels/${channel}/videos?cursor=0&sort=date&time=all`
 		);
 
 	fetchClipData = async (channel) =>
-		this.scrapeData(
+		await this.scrapeDataAsJson(
 			`https://kick.com/api/v2/channels/${channel}/clips?cursor=0&sort=view&time=all`
 		);
 }
