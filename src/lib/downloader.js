@@ -1,26 +1,25 @@
 import { spawn } from 'child_process';
 import pathToFfmpeg from 'ffmpeg-static';
-import { performance } from 'perf_hooks';
-import { formatDuration, intervalToDuration } from 'date-fns';
+//import { formatDuration, intervalToDuration } from 'date-fns';
 
-const downloader = async (url, options) => {
-	try {
-		console.log('Downloading content from:', url);
+const downloader = async (urlContent) => {
+	const args = [
+		'-y',
+		'-i',
+		urlContent,
+		'-threads',
+		'0',
+		'-c',
+		'copy',
+		'-progress',
+		'pipe:1',
+		'output.mp4',
+	];
 
-		ffmpeg(
-			'https://stream.kick.com/ivs/v1/196233775518/LlgJ3azb4XGI/2024/9/19/1/35/y0ywFKQumD4B/media/hls/360p30/playlist.m3u8'
-		)
-			.output('./content.mp4')
-			.on('end', () => {
-				console.log('Processing finished !');
-			})
-			.on('error', (error) => {
-				console.log(error);
-			})
-			.run();
-	} catch (error) {
-		console.log(error);
-	}
+	const command = pathToFfmpeg;
+	//const ffmpegProcess = spawn(command, args);
+
+	return 'Downloader';
 };
 
 /* stdout.on('data', (data) => {
@@ -40,29 +39,7 @@ const downloader = async (url, options) => {
 	}
 }); */
 
-let chales =
-	'https://stream.kick.com/ivs/v1/196233775518/LlgJ3azb4XGI/2024/9/19/1/35/y0ywFKQumD4B/media/hls/720p30/playlist.m3u8';
-let vod =
-	'https://stream.kick.com/ivs/v1/196233775518/gzFppB5CwNS7/2024/10/7/0/59/kUKUajUUKd1h/media/hls/1080p/playlist.m3u8';
-const downloadLink = vod;
-const command = pathToFfmpeg;
-
-const args = [
-	'-y',
-	'-xerror',
-	'-i',
-	downloadLink,
-	'-threads',
-	'0',
-	'-c',
-	'copy',
-	'-progress',
-	'pipe:1',
-	'video.mp4',
-];
-
-const startTime = performance.now();
-const ffmpegProcess = spawn(command, args);
+/* 
 
 ffmpegProcess.stdout.on('data', (data) => {
 	const output = data.toString();
@@ -79,13 +56,11 @@ ffmpegProcess.on('close', (code) => {
 		console.log('Error al descargar el video');
 		return;
 	}
-
-	const endTime = performance.now();
 	const duration = intervalToDuration({ start: 0, end: endTime - startTime });
 	const formatted = formatDuration(duration);
 	console.log(`Duración: ${formatted}`);
 	console.log(`FFmpeg finalizado con código ${code}`);
 	console.log(pathToFfmpeg);
 });
-
+ */
 export default downloader;

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import pkg from '../package.json' assert { type: 'json' };
-import { initialAction } from '../src/actions/initial.js';
+import { initialAction } from '../src/actions/start.js';
 import { Command } from 'commander';
 
 const program = new Command();
