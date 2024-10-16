@@ -1,4 +1,4 @@
-import KickScraper from '../lib/scraper.js';
+import KickScraper from './scraper.js';
 
 const Scraper = new KickScraper();
 
@@ -9,46 +9,43 @@ export default class KickApi {
 			return result.source;
 		} catch (error) {
 			return {
-				status: false,
-				message: 'Invalid URL',
+				error: true,
+				message: '',
 			};
 		}
 	};
 
-	searchChannel = async (channel) => {
+	getChannelInfo = async (channel) => {
 		try {
 			const result = await Scraper.fetchChannelData(channel);
 
 			return {
-				status: true,
 				data: result,
 			};
 		} catch (error) {
 			return {
-				status: false,
+				error: true,
 				message: 'Channel not found',
 			};
 		}
 	};
 
-	listKickContent = async (channel, contentType) => {
+	getContentList = async (channel, contentType) => {
 		try {
 			if (contentType === 'vod') {
 				const result = await Scraper.fetchVideoData(channel);
 				return {
-					status: true,
 					data: result,
 				};
 			}
 
 			const result = await Scraper.fetchClipData(channel);
 			return {
-				status: true,
 				data: result['clips'],
 			};
 		} catch (error) {
 			return {
-				status: false,
+				error: true,
 				message: 'Content not avaible',
 			};
 		}

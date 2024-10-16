@@ -2,7 +2,7 @@ import { spawn } from 'child_process';
 import pathToFfmpeg from 'ffmpeg-static';
 //import { formatDuration, intervalToDuration } from 'date-fns';
 
-const downloader = async (urlContent) => {
+export default async function downloader(urlContent) {
 	const args = [
 		'-y',
 		'-i',
@@ -20,7 +20,7 @@ const downloader = async (urlContent) => {
 	//const ffmpegProcess = spawn(command, args);
 
 	return 'Downloader';
-};
+}
 
 /* stdout.on('data', (data) => {
 	const lines = data.toString().split('\n');
@@ -63,4 +63,3 @@ ffmpegProcess.on('close', (code) => {
 	console.log(pathToFfmpeg);
 });
  */
-export default downloader;

@@ -17,7 +17,7 @@
 - **Multithreaded Downloads**: CLI is developed in Node.js, but it utilizes a compiled FFmpeg binary for quicker multithreaded downloads.
 - **Global Installation**: Install it anywhere on your system and access it from any terminal with no hassle.
 - **Cross-Platform Compatibility**: Works on Windows, macOS, and Linux operating systems.
-- **VODs Downloads**: Download Videos on Demand (VODs) from Kick quickly and easily with simple commands.
+- **VODs Downloads**: Download Videos on Demand (VODs) from Kick quickly with simple commands.
 - **Clips Downloads**: Download Clips from Kick with ease and speed.
 - **Customizable Options**: Adjust settings like format (mp4) and quality (1080p) to suit your needs.
 
