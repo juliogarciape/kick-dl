@@ -48,7 +48,7 @@ export const initialAction = async () => {
 		spinner.stop();
 
 		if (result.status === false) {
-			console.log(`❌ ${inputChannel} not found`);
+			console.log(`❌ ${result.message}`);
 			return;
 		}
 
@@ -84,7 +84,7 @@ export const initialAction = async () => {
 		spinner.stop();
 
 		if (contentList.status === false) {
-			console.log(`❌ The content of ${username} is not avaible`);
+			console.log(`❌ ${contentList.message}`);
 			return;
 		}
 

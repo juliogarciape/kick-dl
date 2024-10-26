@@ -18,6 +18,7 @@ export default class KickScraper {
 			} else {
 				browser = await puppeteer.launch({
 					headless: 'new',
+					args: ['--no-sandbox'],
 					...browserOptions,
 				});
 
@@ -46,7 +47,7 @@ export default class KickScraper {
 				);
 			}
 		} catch (error) {
-			throw error;
+			return { status: false, message: error.message }; // P04c8
 		} finally {
 			if (browser && internalBrowser) {
 				await browser.close();
@@ -54,16 +55,31 @@ export default class KickScraper {
 		}
 	};
 
-	fetchChannelData = async (channel) =>
-		this.scrapeData(`https://kick.com/api/v2/channels/${channel}`);
+	fetchChannelData = async (channel) => {
+		const result = await this.scrapeData(`https://kick.com/api/v2/channels/${channel}`);
+		if (result.status === false) {
+			throw new Error(result.message);
+		}
+		return result;
+	};
 
-	fetchVideoData = async (channel) =>
-		this.scrapeData(
+	fetchVideoData = async (channel) => {
+		const result = await this.scrapeData(
 			`https://kick.com/api/v2/channels/${channel}/videos?cursor=0&sort=date&time=all`
 		);
+		if (result.status === false) {
+			throw new Error(result.message);
+		}
+		return result;
+	};
 
-	fetchClipData = async (channel) =>
-		this.scrapeData(
+	fetchClipData = async (channel) => {
+		const result = await this.scrapeData(
 			`https://kick.com/api/v2/channels/${channel}/clips?cursor=0&sort=view&time=all`
 		);
+		if (result.status === false) {
+			throw new Error(result.message);
+		}
+		return result;
+	};
 }

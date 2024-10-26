@@ -14,7 +14,7 @@ export default class KickApi {
 		} catch (error) {
 			return {
 				status: false,
-				message: 'Channel not found',
+				message: error.message,
 			};
 		}
 	};
@@ -37,7 +37,7 @@ export default class KickApi {
 		} catch (error) {
 			return {
 				status: false,
-				message: 'Content not avaible',
+				message: error.message,
 			};
 		}
 	};

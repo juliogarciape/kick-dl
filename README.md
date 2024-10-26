@@ -17,6 +17,7 @@
 - [Requirements :gear:](#requirements-gear)
 - [Support Us :sparkling_heart:](#support-us-sparkling_heart)
 - [Installation :package:](#installation-package)
+- [Installation from Source :hammer_and_wrench:](#installation-from-source-hammer_and_wrench)
 - [Disclaimer :warning:](#disclaimer-warning)
 - [Contributing :handshake:](#contributing-handshake)
 - [License :scroll:](#license-scroll)
@@ -79,6 +80,36 @@ npm install -g kick-dl
 ```sh
 pnpm add -g kick-dl
 ```
+
+## Installation from Source :hammer_and_wrench:
+
+To install Kick-DL from source, follow these steps:
+
+1. Clone the repository:
+
+    ```sh
+    git clone https://github.com/juliogarciape/kick-dl.git
+    ```
+
+2. Navigate to the project directory:
+
+    ```sh
+    cd kick-dl
+    ```
+
+3. Install the dependencies:
+
+    ```sh
+    npm install
+    ```
+
+4. Link the package globally:
+
+    ```sh
+    npm link
+    ```
+
+Now you can use `kick-dl` from anywhere in your terminal.
 
 ## Disclaimer :warning:
 
