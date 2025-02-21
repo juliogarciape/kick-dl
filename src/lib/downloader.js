@@ -71,7 +71,7 @@ export const Downloader = (
 			});
 		});
 
-		ffmpegProcess.on('error', (err) => {
+		ffmpegProcess.on('error', (error) => {
 			reject({
 				status: false,
 				message: error,
